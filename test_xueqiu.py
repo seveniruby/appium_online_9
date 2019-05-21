@@ -13,7 +13,7 @@ class TestXueqiuAndroid(object):
     @classmethod
     def setup_class(cls):
         print("setup class 在当前类下的所有用例执行之前只执行一次")
-        cls.install_app()
+        #cls.install_app()
 
     def setup_method(self):
         print("setup method 在每个测试用例执行之前执行一次")
@@ -55,6 +55,7 @@ class TestXueqiuAndroid(object):
                 .release()\
                 .perform()
             time.sleep(2)
+            self.driver.get_screenshot_as_file(str(i)+".png")
 
     def test_window_size(self):
         print(self.driver.get_window_rect())
@@ -90,6 +91,7 @@ class TestXueqiuAndroid(object):
         caps["appActivity"] = ".view.WelcomeActivityAlias"
         #为了更快的启动，并保留之前的数据，从而可以保存上一个case执行后的状态
         caps['noReset']=True
+        caps['udid']='emulator-5554'
 
         driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
         driver.implicitly_wait(10)

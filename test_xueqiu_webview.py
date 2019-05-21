@@ -5,8 +5,11 @@ import time
 
 from appium import webdriver
 import pytest
+from appium.webdriver.common.mobileby import MobileBy
 from appium.webdriver.common.touch_action import TouchAction
 from appium.webdriver.webdriver import WebDriver
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 class TestXueqiuAndroidLogin(object):
@@ -14,11 +17,14 @@ class TestXueqiuAndroidLogin(object):
     @classmethod
     def setup_class(cls):
         print("setup class 在当前类下的所有用例执行之前只执行一次")
-        cls.driver=cls.install_app()
+        #cls.driver=cls.install_app()
+        cls.driver=cls.restart_app()
+        WebDriverWait(cls.driver, 20).until(EC.presence_of_element_located((MobileBy.XPATH, "//*[@text='交易']")))
+        cls.driver.find_element_by_xpath("//*[@text='交易']").click()
 
         #进入我的页面
-        el1 = cls.driver.find_element_by_id("user_profile_icon")
-        el1.click()
+        #el1 = cls.driver.find_element_by_id("user_profile_icon")
+        #el1.click()
 
 
     def setup_method(self):
@@ -27,22 +33,18 @@ class TestXueqiuAndroidLogin(object):
         self.driver=TestXueqiuAndroidLogin.driver
 
         #每次都会执行一次进入登录页的点击
-        el2 = self.driver.find_element_by_id("tv_login")
-        el2.click()
+        self.driver.find_element_by_xpath("//*[@text='交易']").click()
 
 
+    def test_webview_simulator_A(self):
+        self.driver.find_element_by_accessibility_id("A股开户").click()
+        self.driver.find_element_by_accessibility_id("立即开户")
+        WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((MobileBy.ACCESSIBILITY_ID, "立即开户")))
 
-    def test_login_phone(self):
-        el3 = self.driver.find_element_by_id("tv_login_by_phone_or_others")
-        el3.click()
-
-    def test_login_password(self):
-        el3 = self.driver.find_element_by_id("tv_login_by_phone_or_others")
-        el3.click()
-        self.driver.find_element_by_xpath("//*[@text='邮箱手机号密码登录']").click()
 
     def teardown_method(self):
         #不加也没关系，如果不quit，启动appium会自动quit之前的session
+        self.driver.back()
         self.driver.back()
 
     @classmethod
@@ -72,6 +74,7 @@ class TestXueqiuAndroidLogin(object):
         caps["appActivity"] = ".view.WelcomeActivityAlias"
         #为了更快的启动，并保留之前的数据，从而可以保存上一个case执行后的状态
         caps['noReset']=True
+        caps["udid"]="emulator-5554"
 
         driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
         driver.implicitly_wait(10)
