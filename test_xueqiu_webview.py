@@ -19,6 +19,7 @@ class TestXueqiuAndroidLogin(object):
         print("setup class 在当前类下的所有用例执行之前只执行一次")
         #cls.driver=cls.install_app()
         cls.driver=cls.restart_app()
+        print(cls.driver.contexts)
         WebDriverWait(cls.driver, 20).until(EC.presence_of_element_located((MobileBy.XPATH, "//*[@text='交易']")))
         cls.driver.find_element_by_xpath("//*[@text='交易']").click()
 
@@ -36,10 +37,29 @@ class TestXueqiuAndroidLogin(object):
         self.driver.find_element_by_xpath("//*[@text='交易']").click()
 
 
-    def test_webview_simulator_A(self):
+    def test_webview_simulator_native(self):
         self.driver.find_element_by_accessibility_id("A股开户").click()
         self.driver.find_element_by_accessibility_id("立即开户")
         WebDriverWait(self.driver, 10).until(EC.presence_of_element_located((MobileBy.ACCESSIBILITY_ID, "立即开户")))
+
+    def test_webview_simulator_css(self):
+
+        print(self.driver.contexts)
+        print(self.driver.current_context)
+        #切换context
+        self.driver.switch_to.context(self.driver.contexts[1])
+        print(self.driver.current_context)
+        self.driver.find_element_by_css_selector(".trade_home_info_3aI").click()
+        time.sleep(5)
+        #切换窗口
+        print(self.driver.window_handles)
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        self.driver.find_element_by_id("phone-number").send_keys("15600534760")
+        time.sleep(5)
+        self.driver.find_element_by_css_selector("#phone-number").send_keys("123456")
+        time.sleep(5)
+        self.driver.find_element_by_css_selector(".item .mobile").send_keys("567890")
+        time.sleep(5)
 
 
     def teardown_method(self):
@@ -74,7 +94,8 @@ class TestXueqiuAndroidLogin(object):
         caps["appActivity"] = ".view.WelcomeActivityAlias"
         #为了更快的启动，并保留之前的数据，从而可以保存上一个case执行后的状态
         caps['noReset']=True
-        caps["udid"]="emulator-5554"
+        caps['chromedriverExecutableDir']="/Users/seveniruby/projects/chromedriver/2.20"
+        #caps["udid"]="emulator-5554"
 
         driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
         driver.implicitly_wait(10)
