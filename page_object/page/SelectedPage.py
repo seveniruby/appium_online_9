@@ -1,13 +1,16 @@
+from appium.webdriver.common.mobileby import MobileBy
+from selenium.webdriver.common.by import By
+
 from page_object.driver.AndroidClient import AndroidClient
+from page_object.page.BasePage import BasePage
 
 
-class SelectedPage(object):
+class SelectedPage(BasePage):
     def addDefault(self):
         return self
 
-    def getPriceByName(self, name):
-        #todo:
-        price=AndroidClient.driver\
-            .find_element_by_xpath("//*[contains(@resource-id, 'stockName') and @text='"+name+"']"+
-             "/../../..//*[contains(@resource-id, 'currentPrice')]").text
+    def getPriceByName(self, name) -> float:
+        priceLocator=(MobileBy.XPATH, "//*[contains(@resource-id, 'stockName') and @text='%s']" %name +
+             "/../../..//*[contains(@resource-id, 'currentPrice')]")
+        price=self.find(priceLocator).text
         return float(price)
