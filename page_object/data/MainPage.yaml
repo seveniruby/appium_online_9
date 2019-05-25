@@ -1,0 +1,3 @@
+gotoProfile:
+  - by: id
+    value: user_profile_icon

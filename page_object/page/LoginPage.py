@@ -23,11 +23,7 @@ class LoginPage(BasePage):
         return self
 
     def loginByPassword(self, account, password):
-        self.find(self._other_locator).click()
-        self.find(self._tv_login_with_account).click()
-        self.find(self._login_account).send_keys(account)
-        self.find(self._login_password).send_keys(password)
-        self.find(self._button_next).click()
+        self.load("../data/LoginPage.yaml", "loginByPassword" , username=account, password=password)
         return self
     def loginSuccessByPassword(self, account, password):
         from page_object.page.MainPage import MainPage

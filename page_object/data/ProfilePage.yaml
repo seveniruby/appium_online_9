@@ -1,0 +1,3 @@
+gotoLogin:
+  - by: text
+    value: 点击登录

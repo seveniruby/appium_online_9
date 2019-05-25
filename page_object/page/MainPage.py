@@ -26,5 +26,5 @@ class MainPage(BasePage):
         return SearchPage()
 
     def gotoProfile(self):
-        self.find(MainPage._profile_button).click()
+        self.load("../data/MainPage.yaml", "gotoProfile")
         return ProfilePage()
