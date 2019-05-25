@@ -18,7 +18,7 @@ class MainPage(BasePage):
 
         return SelectedPage()
 
-    def gotoSearch(self):
+    def gotoSearch(self) -> SearchPage:
         search_button=(By.ID, "home_search")
         self.find(search_button).click()
         return SearchPage()
