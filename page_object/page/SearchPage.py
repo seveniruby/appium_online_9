@@ -21,3 +21,11 @@ class SearchPage(BasePage):
         id=self.find(follow_button).get_attribute("resourceId")
         print(id)
         return "followed_btn" in id
+
+    def searchByUser(self, key):
+        # todo: 作业2
+        pass
+
+    def isFollowed(self):
+        # todo: 作业2
+        pass
