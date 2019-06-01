@@ -1,0 +1,20 @@
+loginByPassword:
+  - locator: tv_login_by_phone_or_others
+    by: id
+    action: click
+  - locator: tv_login_with_account
+    by: id
+    action: click
+  - by: id
+    locator: login_account
+    action: sendKeys
+    text: $var1
+  - by: id
+    locator: login_password
+    action: sendKeys
+    text: $var2
+  - by: id
+    locator: button_next
+    action: click
+getErrorMsg:
+  - xxx

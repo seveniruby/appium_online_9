@@ -1,0 +1,4 @@
+gotoLogin:
+  - by: xpath
+    locator: //*[@text='点击登录']
+    action: click
