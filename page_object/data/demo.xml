@@ -1,0 +1,51 @@
+<hierarchy class="hierarchy" height="1080" index="0" rotation="0" width="720">
+    <android.widget.FrameLayout bounds="[56,446][664,681]" checkable="false" checked="false"
+                                class="android.widget.FrameLayout" clickable="false" displayed="true" enabled="true"
+                                focusable="false" focused="false" index="0" long-clickable="false"
+                                package="com.xueqiu.android" password="false" scrollable="false" selected="false"
+                                text="">
+        <android.widget.LinearLayout bounds="[56,446][664,681]" checkable="false" checked="false"
+                                     class="android.widget.LinearLayout" clickable="false" displayed="true"
+                                     enabled="true" focusable="false" focused="false" index="0" long-clickable="false"
+                                     package="com.xueqiu.android" password="false" scrollable="false" selected="false"
+                                     text="">
+            <android.widget.FrameLayout bounds="[56,446][664,681]" checkable="false" checked="false"
+                                        class="android.widget.FrameLayout" clickable="false" displayed="true"
+                                        enabled="true" focusable="false" focused="false" index="0"
+                                        long-clickable="false" package="com.xueqiu.android" password="false"
+                                        resource-id="android:id/content" scrollable="false" selected="false" text="">
+                <android.view.ViewGroup bounds="[56,446][664,681]" checkable="false" checked="false"
+                                        class="android.view.ViewGroup" clickable="false" displayed="true" enabled="true"
+                                        focusable="false" focused="false" index="0" long-clickable="false"
+                                        package="com.xueqiu.android" password="false" scrollable="false"
+                                        selected="false" text="">
+                    <android.widget.ScrollView bounds="[56,478][664,553]" checkable="false" checked="false"
+                                               class="android.widget.ScrollView" clickable="false" displayed="true"
+                                               enabled="true" focusable="true" focused="false" index="0"
+                                               long-clickable="false" package="com.xueqiu.android" password="false"
+                                               resource-id="com.xueqiu.android:id/md_contentScrollView"
+                                               scrollable="false" selected="false" text="">
+                        <android.widget.TextView bounds="[56,494][664,537]" checkable="false" checked="false"
+                                                 class="android.widget.TextView" clickable="true" displayed="true"
+                                                 enabled="true" focusable="true" focused="false" index="0"
+                                                 long-clickable="true" package="com.xueqiu.android" password="false"
+                                                 resource-id="com.xueqiu.android:id/md_content" scrollable="false"
+                                                 selected="false" text="未登录支持组合下单券商"/>
+                    </android.widget.ScrollView>
+                    <android.widget.TextView bounds="[352,569][496,665]" checkable="false" checked="false"
+                                             class="android.widget.TextView" clickable="true" displayed="true"
+                                             enabled="true" focusable="true" focused="false" index="1"
+                                             long-clickable="false" package="com.xueqiu.android" password="false"
+                                             resource-id="com.xueqiu.android:id/md_buttonDefaultNegative"
+                                             scrollable="false" selected="false" text="取消"/>
+                    <android.widget.TextView bounds="[496,569][640,665]" checkable="false" checked="false"
+                                             class="android.widget.TextView" clickable="true" displayed="true"
+                                             enabled="true" focusable="true" focused="false" index="2"
+                                             long-clickable="false" package="com.xueqiu.android" password="false"
+                                             resource-id="com.xueqiu.android:id/md_buttonDefaultPositive"
+                                             scrollable="false" selected="false" text="去登录"/>
+                </android.view.ViewGroup>
+            </android.widget.FrameLayout>
+        </android.widget.LinearLayout>
+    </android.widget.FrameLayout>
+</hierarchy>

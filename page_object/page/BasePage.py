@@ -4,8 +4,12 @@ from selenium.webdriver.remote.webelement import WebElement
 
 from page_object.driver.Client import AndroidClient
 import yaml
+import re
 
 class BasePage(object):
+    element_black=[
+        (By.XPATH, "ddd")
+    ]
     def __init__(self):
         self.driver: WebDriver=self.getDriver()
 
@@ -20,7 +24,27 @@ class BasePage(object):
 
     def find(self, kv) -> WebElement:
         #todo: 处理各类弹框
-        return self.driver.find_element(*kv)
+        return self.find(*kv)
+
+    def find(self, by, value):
+        element: WebElement
+        #加上重试机制
+        for i in range(3):
+            try:
+                element=self.driver.find_element(by ,value)
+                return element
+            except:
+                #找到页面的最顶层元素进行点击
+                #动态变化位置的元素
+
+                #黑名单
+                ##//*[@text='弹框']/..//*[@text='确认']
+                for e in BasePage.element_black:
+                    elements=self.driver.find_elements(*e)
+                    if(elements.__sizeof__()>0):
+                        elements[0].click()
+
+
     def findByText(self, text) -> WebElement:
         return self.find((By.XPATH, "//*[@text='%s']" %text))
 
@@ -40,7 +64,7 @@ class BasePage(object):
                 element_platform=po_elements[step['element']][AndroidClient.platform]
             else:
                 element_platform={"by": step['by'], "locator": step['locator']}
-            element: WebElement=self.driver.find_element(by=element_platform['by'], value=element_platform['locator'])
+            element: WebElement=self.find(by=element_platform['by'], value=element_platform['locator'])
             action=str(step['action']).lower()
 
             #todo: 定位失败，多数是弹框，try catch后进入一个弹框处理 元素智能等待
