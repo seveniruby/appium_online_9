@@ -1,0 +1,34 @@
+
+
+install_app:
+  server: http://localhost:4723/wd/hub
+  implicitly_wait: 10
+  caps:
+    android:
+      platformName: android
+      deviceName: hogwarts
+      appPackage: com.xueqiu.android
+      appActivity: .view.WelcomeActivityAlias
+      autoGrantPermissions: true
+    ios:
+
+
+
+restart_app:
+  server: http://localhost:4723/wd/hub
+  implicitly_wait: 10
+  caps:
+    android:
+      platformName: android
+      deviceName: hogwarts
+      appPackage: com.xueqiu.android
+      appActivity: .view.WelcomeActivityAlias
+      autoGrantPermissions: true
+      noReset: true
+      unicodeKeyboard: true
+      resetKeyboard: true
+    ios: {}
+    wxmp: {}
+
+
+platform: android

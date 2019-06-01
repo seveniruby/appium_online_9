@@ -5,12 +5,10 @@ loginByPassword:
   - locator: tv_login_with_account
     by: id
     action: click
-  - by: id
-    locator: login_account
+  - element: login_account
     action: sendKeys
     text: $var1
-  - by: id
-    locator: login_password
+  - element: login_password
     action: sendKeys
     text: $var2
   - by: id
@@ -18,3 +16,15 @@ loginByPassword:
     action: click
 getErrorMsg:
   - xxx
+elements:
+  login_account:
+    android:
+      by: id
+      locator: login_account
+    ios:
+      by: xpath
+      locator: dddddd
+  login_password:
+    android:
+      by: id
+      locator: login_password
