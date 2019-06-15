@@ -19,6 +19,7 @@ class TestXueqiuAndroid(object):
         print("setup method 在每个测试用例执行之前执行一次")
         #获取启动的appium的driver实例，用于后续每个case的driver
         self.driver=self.restart_app()
+        self.driver.execute_script()
 
     def test_login(self):
         el1 = self.driver.find_element_by_id("user_profile_icon")
